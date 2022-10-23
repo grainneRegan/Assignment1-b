@@ -109,11 +109,20 @@ public class LectureManagementSystem {
         //Printing courses, required modules, lecturer's details for these modules, students taking these courses and their details
         for(CoursePackage course:courses){
             System.out.println("Details for " + course.getCourseName());
+            System.out.println("\nRequired Modules: " + "\n");
             for(Module tempModule:course.getRequiredModules()){
-                System.out.println("Required Modules: " + "\n" + tempModule);
+                System.out.println(tempModule.getModuleName() + ": module id is " + tempModule.getId() + ", lecturer responsible for module "
+                        + tempModule.getLecturerResponsible().getName());
             }
-            for(Object tempStudent:course.getStudentsEnrolled()){
-                System.out.println("Students Enrolled in " + course.getCourseName() + ":\n" + tempStudent);
+            System.out.println("\nStudents Enrolled in " + course.getCourseName() + ":\n");
+            for(Student tempStudent:course.getStudentsEnrolled()) {
+                System.out.println("StudentName: " + tempStudent.getName() + "\nStudent Id: " + tempStudent.getId()
+                        + "\nStudent Age: " + tempStudent.getAge() + "\nStudent UserName: " + tempStudent.getStudentUserName());
+
+                for (Module tempModule2 : tempStudent.getModules()) {
+                    System.out.println("\nModules enrolled in: " + tempModule2.getModuleName());
+                }
+                System.out.println("\n\n");
             }
         }
     }
